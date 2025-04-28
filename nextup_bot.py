@@ -11,6 +11,7 @@ from collections import Counter
 # === Your Bot Token ===
 TELEGRAM_BOT_TOKEN = '7569067862:AAF6ZqXP87SLktlTvLEN3-UsUQ9rUDqvUfc'
 
+# === Estimated RPM per niche ===
 rpm_estimates = {
     "fitness": 5.0,
     "finance": 20.0,
@@ -164,6 +165,7 @@ def main():
     app.add_handler(MessageHandler(filters.ALL, handle_message))
     app.run_polling()
 
-    if __name__ == '__main__':
+if __name__ == '__main__':
     main()
+
    
