@@ -8,6 +8,7 @@ import io
 import random
 from collections import Counter
 
+# === Your Bot Token ===
 TELEGRAM_BOT_TOKEN = '7569067862:AAF6ZqXP87SLktlTvLEN3-UsUQ9rUDqvUfc'
 
 rpm_estimates = {
@@ -164,4 +165,5 @@ def main():
     app.run_polling()
 
 if __name__ == '__main__':
-    main()    
+    main()
+   
