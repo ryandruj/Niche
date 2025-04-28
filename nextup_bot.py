@@ -8,10 +8,10 @@ import io
 import random
 from collections import Counter
 
-# === Your New Bot Token ===
-TELEGRAM_BOT_TOKEN = '7602755944:AAEw4vTXscWQl718tMhWqs6W8Y7aXBF1QFU'
+# === New Bot Token ===
+TELEGRAM_BOT_TOKEN = '7773493007:AAHnt5b4CV3X8Ws_7CUp9J7p72NWsu3bgQk'
 
-# === Estimated RPM per niche ===
+# === RPM Data ===
 rpm_estimates = {
     "fitness": 5.0,
     "finance": 20.0,
@@ -52,35 +52,11 @@ def scrape_exploding_topics():
             data.append((title, growth_value))
     return data
 
-def scrape_google_trends():
-    try:
-        url = "https://trends.google.com/trends/trendingsearches/daily/rss?geo=US"
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, 'xml')
-        titles = [item.title.text for item in soup.find_all('item')]
-        return titles
-    except:
-        return []
-
-def scrape_glasp_trends():
-    try:
-        url = "https://glasp.co/youtube-trending"
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        titles = [item.get_text(strip=True) for item in soup.select('div.css-1it2z2h')]
-        return titles
-    except:
-        return []
-
 def merge_trends():
     exploding_data = scrape_exploding_topics()
-    google_data = scrape_google_trends()
-    glasp_data = scrape_glasp_trends()
-
     exploded_titles = [title for title, growth in exploding_data]
-    all_titles = exploded_titles + google_data + glasp_data
-    all_titles = [title.lower().strip() for title in all_titles if title]
-    counts = Counter(all_titles)
+    exploded_titles = [title.lower().strip() for title in exploded_titles if title]
+    counts = Counter(exploded_titles)
 
     topic_growth = {title.lower(): growth for title, growth in exploding_data}
     final_trends = []
@@ -146,7 +122,7 @@ def create_premium_card(title, growth, rpm_value):
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not update.message or not update.message.text:
-        return  # Ignore non-text updates
+        return
 
     user_message = update.message.text.lower()
 
