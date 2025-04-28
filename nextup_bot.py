@@ -8,8 +8,8 @@ import io
 import random
 from collections import Counter
 
-# === Your Bot Token ===
-TELEGRAM_BOT_TOKEN = '7569067862:AAF6ZqXP87SLktlTvLEN3-UsUQ9rUDqvUfc'
+# === Your New Bot Token ===
+TELEGRAM_BOT_TOKEN = '7602755944:AAEw4vTXscWQl718tMhWqs6W8Y7aXBF1QFU'
 
 # === Estimated RPM per niche ===
 rpm_estimates = {
@@ -167,4 +167,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-   
