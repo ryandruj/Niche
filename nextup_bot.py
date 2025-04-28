@@ -143,6 +143,9 @@ def create_premium_card(title, growth, rpm_value):
     return bio
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if not update.message or not update.message.text:
+        return  # Ignore non-text updates
+
     user_message = update.message.text.lower()
 
     if 'next up' in user_message:
@@ -162,3 +165,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
